@@ -1,5 +1,7 @@
 import { initHttpAgent } from '@fastgpt/service/common/middle/httpAgent';
 import { existsSync, readFileSync } from 'fs';
+import path from 'node:path';
+const dirName = path.resolve(__dirname, '..', '..', '..', '..');
 
 export const readConfigData = (name: string) => {
   const isDev = process.env.NODE_ENV === 'development';
@@ -17,7 +19,7 @@ export const readConfigData = (name: string) => {
       return `data/${name}`;
     }
     // production path
-    return `/app/data/${name}`;
+    return path.join(dirName, `app/data/${name}`);
   })();
 
   const content = readFileSync(filename, 'utf-8');

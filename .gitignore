@@ -44,3 +44,8 @@ files/helm/fastgpt/fastgpt-0.1.0.tgz
 files/helm/fastgpt/charts/*.tgz
 
 tmp/
+
+files/deploy/fastgpt/mongo/
+files/deploy/fastgpt/mysql/
+files/deploy/fastgpt/oneapi/
+files/deploy/fastgpt/pg/

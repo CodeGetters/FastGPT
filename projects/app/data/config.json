@@ -78,6 +78,29 @@
       "customExtractPrompt": "",
       "defaultSystemChatPrompt": "",
       "defaultConfig": {}
+    },
+    {
+      "model": "llama3:8b",
+      "name": "Ollama-8B",
+      "maxContext": 16000,
+      "avatar": "/imgs/model/ollama.svg",
+      "maxResponse": 4000,
+      "quoteMaxToken": 13000,
+      "maxTemperature": 1.2,
+      "charsPointsPrice": 0,
+      "censor": false,
+      "vision": false,
+      "datasetProcess": true,
+      "usedInClassify": true,
+      "usedInExtractFields": true,
+      "usedInToolCall": true,
+      "usedInQueryExtension": true,
+      "toolChoice": true,
+      "functionCall": true,
+      "customCQPrompt": "",
+      "customExtractPrompt": "",
+      "defaultSystemChatPrompt": "",
+      "defaultConfig": {}
     }
   ],
   "vectorModels": [
@@ -116,6 +139,20 @@
       "weight": 100,
       "dbConfig": {},
       "queryConfig": {}
+    },
+    {
+      "model": "llama3:8b",
+      "name": "Ollama-8B",
+      "avatar": "/imgs/model/ollama.svg",
+      "charsPointsPrice": 0,
+      "defaultToken": 512,
+      "maxToken": 3000,
+      "weight": 100,
+      "dbConfig": {},
+      "queryConfig": {},
+      "defaultConfig": {
+        "dimensions": 1024
+      }
     }
   ],
   "reRankModels": [],

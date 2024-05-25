@@ -12,6 +12,7 @@ import { readConfigData } from '@/service/common/system';
 import { exit } from 'process';
 import { FastGPTProUrl } from '@fastgpt/service/common/system/constants';
 import { initFastGPTConfig } from '@fastgpt/service/common/system/tools';
+import path from 'node:path';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   await getInitConfig();
@@ -125,13 +126,17 @@ export async function initSystemConfig() {
   });
 }
 
+// E:\software_cache\codetotal\react\next\repo\FastGPT\projects
+const dirName = path.resolve(__dirname, '..', '..', '..', '..');
+console.log('process.env.NODE_ENV:', process.env.NODE_ENV);
+
 export function getSystemVersion() {
   if (global.systemVersion) return;
   try {
     if (process.env.NODE_ENV === 'development') {
       global.systemVersion = process.env.npm_package_version || '0.0.0';
     } else {
-      const packageJson = JSON.parse(readFileSync('/app/package.json', 'utf-8'));
+      const packageJson = JSON.parse(readFileSync(path.join(dirName, 'app/package.json'), 'utf-8'));
 
       global.systemVersion = packageJson?.version;
     }
@@ -147,7 +152,9 @@ function getSystemPlugin() {
   if (global.communityPlugins && global.communityPlugins.length > 0) return;
 
   const basePath =
-    process.env.NODE_ENV === 'development' ? 'data/pluginTemplates' : '/app/data/pluginTemplates';
+    process.env.NODE_ENV === 'development'
+      ? 'data/pluginTemplates'
+      : path.join(dirName, 'app/data/pluginTemplates');
   // read data/pluginTemplates directory, get all json file
   const files = readdirSync(basePath);
   // filter json file
@@ -173,7 +180,7 @@ function getSystemPluginV1() {
   const basePath =
     process.env.NODE_ENV === 'development'
       ? 'data/pluginTemplates/v1'
-      : '/app/data/pluginTemplates/v1';
+      : path.join(dirName, 'app/data/pluginTemplates/v1');
   // read data/pluginTemplates directory, get all json file
   const files = readdirSync(basePath);
   // filter json file
