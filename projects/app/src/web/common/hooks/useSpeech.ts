@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { POST } from '../api/request';
 import { useToast } from '@fastgpt/web/hooks/useToast';
@@ -53,8 +54,8 @@ export const useSpeech = (props?: OutLinkChatAuthProps & { appId?: string }) => 
   const startSpeak = async (onFinish: (text: string) => void) => {
     if (!navigator?.mediaDevices?.getUserMedia) {
       return toast({
-        status: 'warning',
-        title: t('common.speech.not support')
+        status: 'warning'
+        // title: t('common.speech.not support')
       });
     }
     try {
@@ -115,8 +116,8 @@ export const useSpeech = (props?: OutLinkChatAuthProps & { appId?: string }) => 
             onFinish(result);
           } catch (error) {
             toast({
-              status: 'warning',
-              title: getErrText(error, t('common.speech.error tip'))
+              status: 'warning'
+              // title: getErrText(error, t('common.speech.error tip'))
             });
           }
         }
@@ -136,8 +137,8 @@ export const useSpeech = (props?: OutLinkChatAuthProps & { appId?: string }) => 
       mediaRecorder.current.start();
     } catch (error) {
       toast({
-        status: 'warning',
-        title: getErrText(error, 'Whisper error')
+        status: 'warning'
+        // title: getErrText(error, 'Whisper error')
       });
       console.log(error);
     }
