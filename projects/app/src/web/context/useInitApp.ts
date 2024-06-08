@@ -14,22 +14,20 @@ export const useInitApp = () => {
   const { i18n } = useTranslation();
   const { loadGitStar, setInitd, feConfigs } = useSystemStore();
   const [scripts, setScripts] = useState<FastGPTFeConfigsType['scripts']>([]);
-  const [title, setTitle] = useState(process.env.SYSTEM_NAME || 'AI');
+  const [title, setTitle] = useState(
+    process.env.SYSTEM_NAME || '基于React和LLM语言大模型的本地知识库问答系统'
+  );
 
   const initFetch = useMemoizedFn(async () => {
     const {
       feConfigs: { scripts, isPlus, show_git, systemTitle }
     } = await clientInitData();
 
-    setTitle(systemTitle || 'FastGPT');
+    setTitle(systemTitle || '基于React和LLM语言大模型的本地知识库问答系统');
 
     // log fastgpt
     if (!isPlus) {
-      console.log(
-        '%cWelcome to FastGPT',
-        'font-family:Arial; color:#3370ff ; font-size:18px; font-weight:bold;',
-        `GitHub：https://github.com/labring/FastGPT`
-      );
+      console.log('%cWelcome to 基于React和LLM语言大模型的本地知识库问答系统');
     }
     if (show_git) {
       loadGitStar();

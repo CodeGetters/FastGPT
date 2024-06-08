@@ -1,6 +1,5 @@
 import type { AppProps } from 'next/app';
 import Script from 'next/script';
-import Head from 'next/head';
 import Layout from '@/components/Layout';
 import { appWithTranslation } from 'next-i18next';
 
@@ -14,7 +13,6 @@ import NextHead from '@/components/common/NextHead';
 
 function App({ Component, pageProps }: AppProps) {
   const { feConfigs, scripts, title } = useInitApp();
-
   return (
     <>
       <NextHead

@@ -5,7 +5,6 @@ import { Box, Center, Image } from '@chakra-ui/react';
 import { useQuery } from '@tanstack/react-query';
 import { getWXLoginQR, getWXLoginResult } from '@/web/support/user/api';
 import { getErrText } from '@fastgpt/global/common/error/utils';
-import { useRouter } from 'next/router';
 import { useToast } from '@fastgpt/web/hooks/useToast';
 import FormLayout from './components/FormLayout';
 import { useTranslation } from 'next-i18next';

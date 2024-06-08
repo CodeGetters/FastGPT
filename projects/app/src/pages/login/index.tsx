@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useEffect } from 'react';
-import { Box, Center, Flex, useDisclosure } from '@chakra-ui/react';
+import { Box, Center, Flex } from '@chakra-ui/react';
 import { LoginPageTypeEnum } from '@/web/support/user/login/constants';
 import { useSystemStore } from '@/web/common/system/useSystemStore';
 import type { ResLogin } from '@/global/support/api/userRes.d';
@@ -16,7 +16,6 @@ import Loading from '@fastgpt/web/components/common/MyLoading';
 const RegisterForm = dynamic(() => import('./components/RegisterForm'));
 const ForgetPasswordForm = dynamic(() => import('./components/ForgetPasswordForm'));
 const WechatForm = dynamic(() => import('./components/LoginForm/WechatForm'));
-const CommunityModal = dynamic(() => import('@/components/CommunityModal'));
 
 const Login = () => {
   const router = useRouter();
@@ -25,7 +24,6 @@ const Login = () => {
   const [pageType, setPageType] = useState<`${LoginPageTypeEnum}`>();
   const { setUserInfo } = useUserStore();
   const { setLastChatId, setLastChatAppId } = useChatStore();
-  const { isOpen, onOpen, onClose } = useDisclosure();
 
   const loginSuccess = useCallback(
     (res: ResLogin) => {
@@ -71,13 +69,12 @@ const Login = () => {
       {feConfigs.googleClientVerKey && (
         <Script
           src={`https://www.recaptcha.net/recaptcha/api.js?render=${feConfigs.googleClientVerKey}`}
-        ></Script>
+        />
       )}
       <Flex
         alignItems={'center'}
         justifyContent={'center'}
-        bg={`url('/icon/login-bg.svg') no-repeat`}
-        backgroundSize={'cover'}
+        style={{ backgroundImage: 'linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab)' }}
         userSelect={'none'}
         h={'100%'}
         px={[0, '10vw']}
@@ -106,19 +103,11 @@ const Login = () => {
             )}
           </Box>
           {feConfigs?.concatMd && (
-            <Box
-              mt={8}
-              color={'primary.700'}
-              cursor={'pointer'}
-              textAlign={'center'}
-              onClick={onOpen}
-            >
+            <Box mt={8} color={'primary.700'} cursor={'pointer'} textAlign={'center'}>
               无法登录，点击联系
             </Box>
           )}
         </Flex>
-
-        {isOpen && <CommunityModal onClose={onClose} />}
       </Flex>
     </>
   );
