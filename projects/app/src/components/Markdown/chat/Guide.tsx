@@ -9,7 +9,6 @@ import { EventNameEnum, eventBus } from '@/web/common/utils/eventbus';
 
 import 'katex/dist/katex.min.css';
 import styles from '../index.module.scss';
-import Image from '../img/Image';
 
 function MyLink(e: any) {
   const href = e.href;
@@ -49,8 +48,7 @@ const Guide = ({ text }: { text: string }) => {
       rehypePlugins={[RehypeKatex]}
       components={{
         a: MyLink,
-        p: 'div',
-        img: Image
+        p: 'div'
       }}
     >
       {formatText}

@@ -29,7 +29,6 @@ import MyTooltip from '@/components/MyTooltip';
 import { useRouter } from 'next/router';
 import { formatStorePrice2Read } from '@fastgpt/global/support/wallet/usage/tools';
 import { putUpdateMemberName } from '@/web/support/user/team/api';
-import { getDocPath } from '@/web/common/system/doc';
 import { MongoImageTypeEnum } from '@fastgpt/global/common/file/image/constants';
 import {
   StandardSubLevelEnum,
@@ -42,10 +41,8 @@ import {
 } from '@/web/support/wallet/sub/constants';
 
 import StandardPlanContentList from '@/components/support/wallet/StandardPlanContentList';
-import { TeamMemberRoleEnum } from '@fastgpt/global/support/user/team/constant';
 
 const StandDetailModal = dynamic(() => import('./standardDetailModal'));
-const TeamMenu = dynamic(() => import('@/components/support/user/team/TeamMenu'));
 const PayModal = dynamic(() => import('./PayModal'));
 const UpdatePswModal = dynamic(() => import('./UpdatePswModal'));
 const OpenAIAccountModal = dynamic(() => import('./OpenAIAccountModal'));
@@ -250,12 +247,6 @@ const MyInfo = () => {
             </Button>
           </Flex>
         )}
-        <Flex mt={6} alignItems={'center'}>
-          <Box flex={'0 0 80px'}>{t('user.Team')}:&nbsp;</Box>
-          <Box flex={1}>
-            <TeamMenu />
-          </Box>
-        </Flex>
         {feConfigs.isPlus && (
           <Box mt={6} whiteSpace={'nowrap'}>
             <Flex alignItems={'center'}>
@@ -546,7 +537,6 @@ const Other = () => {
         {feConfigs?.docUrl && (
           <Link
             bg={'white'}
-            href={getDocPath('/docs/intro')}
             target="_blank"
             display={'flex'}
             py={3}
@@ -585,33 +575,6 @@ const Other = () => {
             </Box>
           </Link>
         )}
-
-        {feConfigs?.lafEnv && userInfo?.team.role === TeamMemberRoleEnum.owner && (
-          <Flex
-            bg={'white'}
-            py={4}
-            px={6}
-            border={theme.borders.sm}
-            borderWidth={'1.5px'}
-            borderRadius={'md'}
-            alignItems={'center'}
-            cursor={'pointer'}
-            userSelect={'none'}
-            onClick={onOpenLaf}
-          >
-            <Image src="/imgs/workflow/laf.png" w={'18px'} alt="laf" />
-            <Box ml={2} flex={1}>
-              laf 账号
-            </Box>
-            <Box
-              w={'9px'}
-              h={'9px'}
-              borderRadius={'50%'}
-              bg={userInfo?.team.lafAccount?.token ? '#67c13b' : 'myGray.500'}
-            />
-          </Flex>
-        )}
-
         {feConfigs?.show_openai_account && (
           <Flex
             bg={'white'}
@@ -636,17 +599,6 @@ const Other = () => {
               bg={userInfo?.openaiAccount?.key ? '#67c13b' : 'myGray.500'}
             />
           </Flex>
-        )}
-        {feConfigs?.concatMd && (
-          <Button
-            variant={'whiteBase'}
-            justifyContent={'flex-start'}
-            leftIcon={<MyIcon name={'modal/concat'} w={'18px'} color={'myGray.600'} />}
-            onClick={onOpenConcat}
-            h={'48px'}
-          >
-            联系我们
-          </Button>
         )}
       </Grid>
 

@@ -1,13 +1,11 @@
 import React, { useMemo } from 'react';
 import type { RenderInputProps } from '../type';
-import { useTranslation } from 'next-i18next';
 import { Box } from '@chakra-ui/react';
 import MySlider from '@/components/Slider';
 import { useContextSelector } from 'use-context-selector';
 import { WorkflowContext } from '@/components/core/workflow/context';
 
 const SliderRender = ({ item, nodeId }: RenderInputProps) => {
-  const { t } = useTranslation();
   const onChangeNode = useContextSelector(WorkflowContext, (v) => v.onChangeNode);
 
   const Render = useMemo(() => {

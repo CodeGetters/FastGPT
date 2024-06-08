@@ -23,7 +23,7 @@ export const useInitApp = () => {
       feConfigs: { scripts, isPlus, show_git, systemTitle }
     } = await clientInitData();
 
-    setTitle(systemTitle || '基于React和LLM语言大模型的本地知识库问答系统');
+    setTitle('基于React和LLM语言大模型的本地知识库问答系统');
 
     // log fastgpt
     if (!isPlus) {

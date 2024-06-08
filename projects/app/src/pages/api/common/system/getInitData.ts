@@ -31,7 +31,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         })) || [],
       whisperModel: global.whisperModel,
       audioSpeechModels: global.audioSpeechModels,
-      systemVersion: global.systemVersion || '0.0.0'
+      systemVersion: '0.0.0'
     }
   });
 }
